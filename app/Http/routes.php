@@ -26,6 +26,32 @@ Route::get('/', 'PagesController@index');
 
 Route::get('about', 'PagesController@about');
 
+
+// Route::model('song', 'App\Song'); // Route Model Binding
+Route::bind('music', function ($handle){
+    return App\Song::whereHandle($handle)->first(); // Returns a single record based on the handle
+});
+
+/*
 Route::get('songs', 'SongsController@index');
 
-get('songs/{id}', 'SongsController@show');
+get('songs/{song}', 'SongsController@show');
+// named route get('songs/{song}', [ 'as' => 'song_path' , 'uses' => 'SongsController']);
+
+get('songs/{song}/edit', 'SongsController@edit');
+
+patch('songs/{song}', 'SongsController@update');
+*/
+
+Route::Resource('music', 'SongsController', [
+    'only' => [
+        'index', 'show', 'edit', 'create', 'store', 'destroy'
+        ],
+    'names' => [
+        'index' => 'songs_path',
+        'show' => 'song_path',
+        'edit' => 'song_edit_path'
+    ]
+]);
+
+Route::Resource('people', 'PeopleController');

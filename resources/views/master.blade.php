@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     @yield('header')
 </head>
 <body>
-    @yield('content')
-    @yield('footer')
+    <div class="container">
+        @yield('content')
+        @yield('footer')
+    </div>
 </body>
 </html>

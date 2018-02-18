@@ -6,6 +6,15 @@
 
 
     @foreach($songs as $song)
-        <li><a href="/songs/{{$song->id}}">{{$song->title}}</a></li>
+
+        <!--
+        <li>
+            <a href="{{ route('song_path', [$song->handle]) }}">{{$song->title}}</a>
+        </li>
+        -->
+
+        <li>
+            {!! link_to_route('song_path', $song->title, [$song->handle]) !!}
+        </li>
     @endforeach
 @endsection
